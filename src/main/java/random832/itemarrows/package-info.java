@@ -1,0 +1,6 @@
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
+package random832.itemarrows;
+
+import net.minecraft.MethodsReturnNonnullByDefault;
+import javax.annotation.ParametersAreNonnullByDefault;

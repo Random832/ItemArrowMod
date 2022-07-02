@@ -1,0 +1,23 @@
+modLoader="javafml"
+loaderVersion="[41,)"
+license="MIT"
+[[mods]]
+modId="itemarrows"
+version="${file.jarVersion}"
+displayName="Example Mod"
+logoFile="itemarrows.png" #optional
+description='''
+Allows you to transport items by attaching them to arrows
+'''
+[[dependencies.itemarrows]]
+    modId="forge"
+    mandatory=true
+    versionRange="[41,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.itemarrows]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.19,1.20)"
+    ordering="NONE"
+    side="BOTH"
