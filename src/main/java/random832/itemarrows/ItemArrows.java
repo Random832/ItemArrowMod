@@ -1,7 +1,6 @@
 package random832.itemarrows;
 
 import com.mojang.logging.LogUtils;
-import io.netty.util.Attribute;
 import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.entity.EntityType;
@@ -9,11 +8,10 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
@@ -48,10 +46,12 @@ public class ItemArrows
 
     void commonSetup(final FMLCommonSetupEvent event)
     {
+        DispenserBlock.registerBehavior(ITEM_ARROW_ITEM.get(), new ItemArrowDispenseBehavior());
     }
 
     void gatherData(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
         generator.addProvider(event.includeServer(),  new ItemTagProvider(generator, Registry.ITEM, event.getExistingFileHelper()));
+        generator.addProvider(event.includeClient(), new EnglishLanguageProvider(generator));
     }
 }

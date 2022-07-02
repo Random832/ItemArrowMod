@@ -33,6 +33,10 @@ public class ItemArrow extends AbstractArrow implements ItemSupplier {
         super(ItemArrows.ITEM_ARROW_ENTITY.get(), shooter, level);
     }
 
+    public ItemArrow(Level level, double x, double y, double z) {
+        super(ItemArrows.ITEM_ARROW_ENTITY.get(), x, y, z, level);
+    }
+
     @Override
     protected void onHitBlock(BlockHitResult hit) {
         super.onHitBlock(hit);
