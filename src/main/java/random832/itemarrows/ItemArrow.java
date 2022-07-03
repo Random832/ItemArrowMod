@@ -82,7 +82,7 @@ public class ItemArrow extends AbstractArrow implements ItemSupplier {
     }
 
     @Override
-    protected ItemStack getPickupItem() {
+    public ItemStack getPickupItem() {
         if(containedItem.isEmpty()) {
             if(random.nextFloat() < 0.4) {
                 return new ItemStack(ItemArrowsMod.ITEM_ARROW_ITEM.get());
@@ -109,7 +109,7 @@ public class ItemArrow extends AbstractArrow implements ItemSupplier {
     @Override
     protected void tickDespawn() {
         super.tickDespawn();
-        if(this.getRemovalReason() != null) {
+        if(this.isRemoved()) {
             ItemEntity itemEntity = null;
             if(containedItem.isEmpty()) {
                 if(random.nextFloat() < 0.4) {
@@ -121,7 +121,7 @@ public class ItemArrow extends AbstractArrow implements ItemSupplier {
                 itemEntity = spawnAtLocation(stack);
             }
             if(itemEntity != null) {
-               itemEntity.lifespan -= 1200;
+               itemEntity.lifespan -= this.life;
             }
         }
     }

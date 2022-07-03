@@ -97,7 +97,7 @@ public class EnvelopeRecipe extends CustomRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return ItemArrowsMod.RS_ENVELOPE.get();
+        return ItemArrowsMod.ENVELOPE_RS.get();
     }
 
     @Override

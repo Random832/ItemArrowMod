@@ -5,7 +5,6 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SpecialRecipeBuilder;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.Tags;
 import random832.itemarrows.ItemArrowsMod;
@@ -23,8 +22,8 @@ public class ModRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
-        SpecialRecipeBuilder.special(ItemArrowsMod.RS_ARROW.get()).save(consumer, modLoc("attach_item_arrow"));
-        SpecialRecipeBuilder.special(ItemArrowsMod.RS_ENVELOPE.get()).save(consumer, modLoc("fill_envelope"));
+        SpecialRecipeBuilder.special(ItemArrowsMod.ARROW_RS.get()).save(consumer, modLoc("attach_item_arrow"));
+        SpecialRecipeBuilder.special(ItemArrowsMod.ENVELOPE_RS.get()).save(consumer, modLoc("fill_envelope"));
         ShapelessRecipeBuilder.shapeless(ItemArrowsMod.ENVELOPE_ITEM.get())
                 .requires(Tags.Items.SLIMEBALLS)
                 .requires(Items.PAPER)
