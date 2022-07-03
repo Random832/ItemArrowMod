@@ -1,6 +1,7 @@
 {
   "entity.itemarrows.item_arrow": "Item Arrow",
-  "item.itemarrows.item_arrow": "Item Arrow",
-  "itemarrows.info.contains": "Contains %s %s",
-  "itemarrows.info.empty": "Empty"
+  "info.itemarrows.contains": "Contains %s %s",
+  "info.itemarrows.contains.stacked": "Contains %s %s (%s total)",
+  "info.itemarrows.empty": "Empty",
+  "item.itemarrows.item_arrow": "Item Arrow"
 }
