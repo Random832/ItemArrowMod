@@ -1,4 +1,4 @@
-package random832.itemarrows.blocks;
+package random832.itemarrows.dispenser;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.context.BlockPlaceContext;

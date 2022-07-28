@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "tag": "forge:gems/amethyst"
+    },
+    "C": {
+      "tag": "forge:chests/wooden"
+    },
+    "H": {
+      "item": "minecraft:hay_block"
+    },
+    "R": {
+      "tag": "forge:dusts/redstone"
+    }
+  },
+  "pattern": [
+    " A ",
+    "RHR",
+    " C "
+  ],
+  "result": {
+    "item": "itemarrows:arrow_collector"
+  }
+}

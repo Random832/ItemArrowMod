@@ -1,0 +1,38 @@
+{
+  "parent": "itemarrows:envelope",
+  "criteria": {
+    "arrow": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "itemarrows:item_arrow"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "minecraft:textures/gui/advancements/backgrounds/stone.png",
+    "description": {
+      "translate": "advancements.item_arrows.arrow.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "itemarrows:item_arrow"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.item_arrows.arrow.title"
+    }
+  },
+  "requirements": [
+    [
+      "arrow"
+    ]
+  ]
+}

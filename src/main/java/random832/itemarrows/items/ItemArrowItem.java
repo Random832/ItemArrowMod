@@ -6,7 +6,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
-import random832.itemarrows.ItemArrow;
+import random832.itemarrows.entities.ItemArrow;
 
 import java.util.List;
 
@@ -31,12 +31,17 @@ public class ItemArrowItem extends ArrowItem {
     }
 
     @Override
-    public int getItemStackLimit(ItemStack stack) {
-        return ItemHelper.getItemStackLimit(super.getItemStackLimit(stack), ItemHelper.getContainedItem(stack));
+    public int getMaxStackSize(ItemStack stack) {
+        return ItemHelper.getItemStackLimit(super.getMaxStackSize(stack), ItemHelper.getContainedItem(stack));
     }
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
         ItemHelper.appendHoverText(stack, tooltip, flag);
+    }
+
+    @Override
+    protected boolean allowedIn(CreativeModeTab p_220153_) {
+        return super.allowedIn(p_220153_);
     }
 }

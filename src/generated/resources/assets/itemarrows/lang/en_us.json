@@ -1,7 +1,18 @@
 {
+  "advancements.item_arrows.arrow.description": "Attach an item to an arrow",
+  "advancements.item_arrows.arrow.title": "Arrow Dynamics",
+  "advancements.item_arrows.envelope.description": "Craft an envelope",
+  "advancements.item_arrows.envelope.title": "Slimed, Sealed, Delivered",
+  "container.itemarrows.advanced_dispenser": "Advanced Dispenser",
   "entity.itemarrows.item_arrow": "Item Arrow",
   "info.itemarrows.contains": "Contains %s %s",
   "info.itemarrows.contains.stacked": "Contains %s %s (%s total)",
   "info.itemarrows.empty": "Empty",
+  "info.itemarrows.empty.envelope": "Empty. Fill in crafting grid",
+  "info.itemarrows.remote.no_coords": "No dispenser coordinates configured",
+  "info.itemarrows.remote.no_dispenser": "No dispenser found at coordinates %s",
+  "info.itemarrows.remote.set_dispenser": "Configured remote to control dispenser at %s",
+  "info.itemarrows.remote.set_target": "Configured dispenser at %s to aim at %s",
+  "item.itemarrows.envelope": "Item Envelope",
   "item.itemarrows.item_arrow": "Item Arrow"
 }

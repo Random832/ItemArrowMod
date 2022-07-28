@@ -38,5 +38,6 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         standard(ItemArrowsMod.ENVELOPE_ITEM.get());
         standard(ItemArrowsMod.ITEM_ARROW_ITEM.get());
+        standard(ItemArrowsMod.REMOTE.get());
     }
 }

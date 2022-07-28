@@ -1,4 +1,4 @@
-package random832.itemarrows;
+package random832.itemarrows.entities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -9,7 +9,6 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.ItemSupplier;
-import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -19,11 +18,14 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
+import random832.itemarrows.capability.CapabilityHelper;
+import random832.itemarrows.EntityHelper;
+import random832.itemarrows.ItemArrowsMod;
 import random832.itemarrows.items.ItemHelper;
 
 import javax.annotation.Nullable;
 
-public class ItemArrow extends AbstractArrow implements ItemSupplier {
+public class ItemArrow extends PreciseBluntArrow implements ItemSupplier {
     public ItemStack containedItem = ItemStack.EMPTY;
 
     @Nullable
@@ -33,7 +35,7 @@ public class ItemArrow extends AbstractArrow implements ItemSupplier {
     @Nullable
     private Entity hitEntity;
 
-    protected ItemArrow(EntityType<? extends AbstractArrow> entityType, Level level) {
+    public ItemArrow(EntityType<? extends AbstractArrow> entityType, Level level) {
         super(entityType, level);
     }
 

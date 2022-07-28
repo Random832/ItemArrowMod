@@ -40,8 +40,8 @@ public class EnvelopeItem extends Item {
     }
 
     @Override
-    public int getItemStackLimit(ItemStack stack) {
-        return ItemHelper.getItemStackLimit(super.getItemStackLimit(stack), ItemHelper.getContainedItem(stack));
+    public int getMaxStackSize(ItemStack stack) {
+        return ItemHelper.getItemStackLimit(super.getMaxStackSize(stack), ItemHelper.getContainedItem(stack));
     }
 
     @Override

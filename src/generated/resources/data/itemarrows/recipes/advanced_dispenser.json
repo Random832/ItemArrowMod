@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "D": {
+      "item": "minecraft:dispenser"
+    },
+    "G": {
+      "tag": "forge:ingots/gold"
+    },
+    "Q": {
+      "tag": "forge:gems/quartz"
+    },
+    "R": {
+      "tag": "forge:dusts/redstone"
+    },
+    "S": {
+      "item": "minecraft:smooth_stone_slab"
+    }
+  },
+  "pattern": [
+    "RQR",
+    "QDQ",
+    "SGS"
+  ],
+  "result": {
+    "item": "itemarrows:advanced_dispenser"
+  }
+}
