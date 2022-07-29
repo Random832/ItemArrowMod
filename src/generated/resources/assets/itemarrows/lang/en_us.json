@@ -13,6 +13,10 @@
   "info.itemarrows.remote.no_dispenser": "No dispenser found at coordinates %s",
   "info.itemarrows.remote.set_dispenser": "Configured remote to control dispenser at %s",
   "info.itemarrows.remote.set_target": "Configured dispenser at %s to aim at %s",
+  "info.itemarrows.slider_label.power": "Power: ",
+  "info.itemarrows.slider_label.xangle": "Elevation: ",
+  "info.itemarrows.slider_label.yangle": "Traverse: ",
+  "item.itemarrows.calibration_arrow": "Blank Precision Arrow",
   "item.itemarrows.envelope": "Item Envelope",
   "item.itemarrows.item_arrow": "Item Arrow"
 }

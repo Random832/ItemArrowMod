@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "/": {
+      "tag": "forge:rods/wooden"
+    },
+    "F": {
+      "tag": "forge:feathers"
+    }
+  },
+  "pattern": [
+    "  /",
+    "F/ ",
+    "/F "
+  ],
+  "result": {
+    "count": 8,
+    "item": "itemarrows:calibration_arrow"
+  }
+}

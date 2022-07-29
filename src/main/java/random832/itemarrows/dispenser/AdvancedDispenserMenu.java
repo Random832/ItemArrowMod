@@ -1,15 +1,17 @@
-package random832.itemarrows.gui;
+package random832.itemarrows.dispenser;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
@@ -28,6 +30,7 @@ public class AdvancedDispenserMenu extends AbstractContainerMenu {
     final DataSlot gunpowderSlot;
     final DataSlot xAngleSlot;
     final DataSlot yAngleSlot;
+    final DataSlot powerSlot;
     @Nullable AdvancedDispenserBlockEntity be;
 
     public AdvancedDispenserMenu(int pContainerId, Inventory pPlayerInventory, IItemHandler itemHandler, ContainerData dataAccess) {
@@ -56,10 +59,16 @@ public class AdvancedDispenserMenu extends AbstractContainerMenu {
         gunpowderSlot = addDataSlot(DataSlot.forContainer(dataAccess, AdvancedDispenserBlockEntity.DATA_GUNPOWDER));
         xAngleSlot = addDataSlot(DataSlot.forContainer(dataAccess, AdvancedDispenserBlockEntity.DATA_XANGLE));
         yAngleSlot = addDataSlot(DataSlot.forContainer(dataAccess, AdvancedDispenserBlockEntity.DATA_YANGLE));
+        powerSlot = addDataSlot(DataSlot.forContainer(dataAccess, AdvancedDispenserBlockEntity.DATA_POWER));
     }
 
     public AdvancedDispenserMenu(int pContainerId, Inventory pPlayerInventory, FriendlyByteBuf data) {
         this(pContainerId, pPlayerInventory, new ItemStackHandler(10), new SimpleContainerData(AdvancedDispenserBlockEntity.NUM_DATA_VALUES));
+    }
+
+    public AdvancedDispenserMenu(int pContainerId, Inventory pPlayerInventory, AdvancedDispenserBlockEntity be) {
+        this(pContainerId, pPlayerInventory, be.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElseThrow(RuntimeException::new), be.dataAccess);
+        this.be = be;
     }
 
     @Override
@@ -103,4 +112,18 @@ public class AdvancedDispenserMenu extends AbstractContainerMenu {
         if (level.getBlockEntity(pos) != be) return false;
         return !(pPlayer.distanceToSqr(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5) > 64);
     }
+
+    public static enum ValueType {
+        X_ANGLE, Y_ANGLE, POWER
+    }
+
+    public void handleValueUpdate(ValueType param, float value) {
+        switch(param) {
+            case X_ANGLE -> be.xAngle = Mth.wrapDegrees(value);
+            case Y_ANGLE -> be.yAngle = Mth.wrapDegrees(value);
+            case POWER -> be.powerSetting = Math.min(Math.max(0f, value), 3f);
+        }
+        be.updateClientAngles();
+    }
+
 }

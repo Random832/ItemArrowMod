@@ -4,8 +4,6 @@ import com.mojang.logging.LogUtils;
 import io.netty.util.Attribute;
 import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.inventory.MenuType;
@@ -39,11 +37,13 @@ import random832.itemarrows.dispenser.*;
 import random832.itemarrows.entities.ArrowItemEntity;
 import random832.itemarrows.entities.ItemArrow;
 import random832.itemarrows.entities.PreciseBluntArrow;
-import random832.itemarrows.gui.AdvancedDispenserMenu;
+import random832.itemarrows.dispenser.AdvancedDispenserMenu;
+import random832.itemarrows.gui.CrafterMenu;
 import random832.itemarrows.items.EnvelopeItem;
 import random832.itemarrows.items.ItemArrowItem;
 import random832.itemarrows.items.CalibrationArrowItem;
 import random832.itemarrows.items.RemoteItem;
+import random832.itemarrows.network.ModPackets;
 
 @Mod(ItemArrowsMod.MODID)
 public class ItemArrowsMod
@@ -64,7 +64,7 @@ public class ItemArrowsMod
         }
     });
     public static final RegistryObject<Item> ITEM_ARROW_ITEM = ITEMS.register("item_arrow", () -> new ItemArrowItem(props));
-    public static final RegistryObject<Item> CALIBRATION_ARROW_ITEM = ITEMS.register("calibration_arrow", () -> new CalibrationArrowItem(props));
+    public static final RegistryObject<Item> PRECISE_ARROW_ITEM = ITEMS.register("calibration_arrow", () -> new CalibrationArrowItem(props));
     public static final RegistryObject<Item> ENVELOPE_ITEM = ITEMS.register("envelope", () -> new EnvelopeItem(props));
     public static final RegistryObject<EntityType<PreciseBluntArrow>> PRECISE_BLUNT_ARROW = ENTITIES.register("calibration_arrow", () -> EntityType.Builder.<PreciseBluntArrow>of(PreciseBluntArrow::new, MobCategory.MISC).build("calibration_arrow"));;
     public static final RegistryObject<EntityType<ItemArrow>> ITEM_ARROW_ENTITY = ENTITIES.register("item_arrow", () -> EntityType.Builder.<ItemArrow>of(ItemArrow::new, MobCategory.MISC).build("item_arrow"));
@@ -80,6 +80,16 @@ public class ItemArrowsMod
     public static final RegistryObject<BlockEntityType<ArrowCollectorBlockEntity>> COLLECTOR_BE = BLOCK_ENTITIES.register("arrow_collector", () -> BlockEntityType.Builder.of(ArrowCollectorBlockEntity::new, COLLECTOR_BLOCK.get()).build(null));
     public static final RegistryObject<MenuType<AdvancedDispenserMenu>> DISPENSER_MENU = MENUS.register("advanced_dispenser", () -> IForgeMenuType.create(AdvancedDispenserMenu::new));
 
+    public static final RegistryObject<Block> ARROW_CRAFTER_BLOCK = BLOCKS.register("arrow_crafter", () -> new ArrowCrafterBlock(Block.Properties.copy(Blocks.CRAFTING_TABLE)));
+    public static final RegistryObject<BlockEntityType<ArrowCrafterBlockEntity>> ARROW_CRAFTER_BE = BLOCK_ENTITIES.register("arrow_crafter", () -> BlockEntityType.Builder.of(ArrowCrafterBlockEntity::new, ARROW_CRAFTER_BLOCK.get()).build(null));;
+    public static final RegistryObject<Block> ENVELOPE_CRAFTER_BLOCK = BLOCKS.register("envelope_crafter", () -> new EnvelopeCrafterBlock(Block.Properties.copy(Blocks.CRAFTING_TABLE)));
+    public static final RegistryObject<BlockEntityType<EnvelopeCrafterBlockEntity>> ENVELOPE_STUFFER_BE = BLOCK_ENTITIES.register("envelope_crafter", () -> BlockEntityType.Builder.of(EnvelopeCrafterBlockEntity::new, ENVELOPE_CRAFTER_BLOCK.get()).build(null));;
+    private static final RegistryObject<BlockItem> ARROW_CRAFTER_ITEM = ITEMS.register("arrow_crafter", () -> new BlockItem(ARROW_CRAFTER_BLOCK.get(), props));
+    private static final RegistryObject<BlockItem> ENVELOPE_CRAFTER_ITEM = ITEMS.register("envelope_crafter", () -> new BlockItem(ENVELOPE_CRAFTER_BLOCK.get(), props));
+    public static final RegistryObject<MenuType<CrafterMenu>> ARROW_CRAFTER_MENU = MENUS.register("arrow_crafter", () -> IForgeMenuType.create(CrafterMenu::createArrowMenu));
+    public static final RegistryObject<MenuType<CrafterMenu>> ENVELOPE_CRAFTER_MENU = MENUS.register("envelope_crafter", () -> IForgeMenuType.create(CrafterMenu::createEnvelopeMenu));
+
+
     public ItemArrowsMod()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -93,12 +103,13 @@ public class ItemArrowsMod
         BLOCK_ENTITIES.register(modEventBus);
         MENUS.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(new Events());
+        ModPackets.registerMessages();
     }
 
     void commonSetup(final FMLCommonSetupEvent event)
     {
         DispenserBlock.registerBehavior(ITEM_ARROW_ITEM.get(), new ItemArrowDispenseBehavior());
-        DispenserBlock.registerBehavior(CALIBRATION_ARROW_ITEM.get(), new CalibrationArrowDispenseBehavior());
+        DispenserBlock.registerBehavior(PRECISE_ARROW_ITEM.get(), new CalibrationArrowDispenseBehavior());
     }
 
     void gatherData(GatherDataEvent event) {
@@ -110,5 +121,6 @@ public class ItemArrowsMod
         generator.addProvider(event.includeClient(), new EnglishLanguageProvider(generator));
         generator.addProvider(event.includeClient(), new ModBlockStateProvider(generator, existingFileHelper));
         generator.addProvider(event.includeClient(), new ModItemModelProvider(generator, existingFileHelper));
+        generator.addProvider(event.includeServer(), new ModLootProvider(generator));
     }
 }

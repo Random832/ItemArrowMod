@@ -4,7 +4,6 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import random832.itemarrows.ItemArrowsMod;
@@ -61,6 +60,34 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('R', Tags.Items.DUSTS_REDSTONE)
                 .define('P', Tags.Items.ENDER_PEARLS)
                 .unlockedBy("has_ender_pearl", has(Tags.Items.ENDER_PEARLS))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(ItemArrowsMod.PRECISE_ARROW_ITEM.get(), 8)
+                .pattern("  /")
+                .pattern("F/ ")
+                .pattern("/F ")
+                .define('/', Tags.Items.RODS_WOODEN)
+                .define('F', Tags.Items.FEATHERS)
+                .unlockedBy("has_feather", has(Tags.Items.FEATHERS))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(ItemArrowsMod.ARROW_CRAFTER_BLOCK.get(), 8)
+                .pattern(" P ")
+                .pattern("RAR")
+                .pattern(" C ")
+                .define('P', Items.STICKY_PISTON)
+                .define('A', ItemArrowsMod.PRECISE_ARROW_ITEM.get())
+                .define('R', Tags.Items.DUSTS_REDSTONE)
+                .define('C', Items.CRAFTING_TABLE)
+                .unlockedBy("has_arrow", has(ItemArrowsMod.PRECISE_ARROW_ITEM.get()))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(ItemArrowsMod.ENVELOPE_CRAFTER_BLOCK.get(), 8)
+                .pattern(" P ")
+                .pattern("RER")
+                .pattern(" C ")
+                .define('P', Items.PISTON)
+                .define('E', ItemArrowsMod.ENVELOPE_ITEM.get())
+                .define('R', Tags.Items.DUSTS_REDSTONE)
+                .define('C', Items.CRAFTING_TABLE)
+                .unlockedBy("has_envelope", has(ItemArrowsMod.ENVELOPE_ITEM.get()))
                 .save(consumer);
     }
 }

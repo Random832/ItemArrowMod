@@ -3,35 +3,29 @@ package random832.itemarrows;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.gui.screens.inventory.ContainerScreen;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.SpectralArrowRenderer;
 import net.minecraft.client.renderer.entity.TippableArrowRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Arrow;
-import net.minecraft.world.entity.projectile.SpectralArrow;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.ContainerScreenEvent;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import random832.itemarrows.dispenser.AdvancedDispenserRenderer;
-import random832.itemarrows.entities.ArrowItemEntity;
 import random832.itemarrows.entities.PreciseBluntArrow;
 import random832.itemarrows.entities.ItemArrow;
-import random832.itemarrows.gui.AdvancedDispenserMenu;
-import random832.itemarrows.gui.AdvancedDispenserScreen;
-
-import javax.annotation.Nullable;
+import random832.itemarrows.dispenser.AdvancedDispenserMenu;
+import random832.itemarrows.dispenser.AdvancedDispenserScreen;
+import random832.itemarrows.gui.CrafterMenu;
+import random832.itemarrows.gui.CrafterScreen;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD, modid = ItemArrowsMod.MODID)
 public class ClientSetup {
@@ -74,11 +68,15 @@ public class ClientSetup {
     @SubscribeEvent
     static void clientSetup(FMLClientSetupEvent e) {
         MenuScreens.register(ItemArrowsMod.DISPENSER_MENU.get(), AdvancedDispenserScreen::new);
+        MenuScreens.register(ItemArrowsMod.ARROW_CRAFTER_MENU.get(), CrafterScreen::new);
+        MenuScreens.register(ItemArrowsMod.ENVELOPE_CRAFTER_MENU.get(), CrafterScreen::new);
     }
 
     @SubscribeEvent
     static void textureAtlasStitch(TextureStitchEvent.Pre e) {
         if(e.getAtlas().location() != InventoryMenu.BLOCK_ATLAS) return;
         e.addSprite(AdvancedDispenserMenu.EMPTY_GUNPOWDER_SLOT);
+        e.addSprite(CrafterMenu.EMPTY_ARROW_SLOT);
+        e.addSprite(CrafterMenu.EMPTY_ENVELOPE_SLOT);
     }
 }

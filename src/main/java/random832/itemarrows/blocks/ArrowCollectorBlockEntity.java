@@ -111,4 +111,9 @@ public class ArrowCollectorBlockEntity extends BlockEntity {
         return super.getCapability(cap, side);
     }
 
+    @Override
+    public void invalidateCaps() {
+        super.invalidateCaps();
+        itemCap.invalidate();
+    }
 }

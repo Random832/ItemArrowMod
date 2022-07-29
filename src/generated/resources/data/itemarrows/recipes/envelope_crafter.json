@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "item": "minecraft:crafting_table"
+    },
+    "E": {
+      "item": "itemarrows:envelope"
+    },
+    "P": {
+      "item": "minecraft:piston"
+    },
+    "R": {
+      "tag": "forge:dusts/redstone"
+    }
+  },
+  "pattern": [
+    " P ",
+    "RER",
+    " C "
+  ],
+  "result": {
+    "count": 8,
+    "item": "itemarrows:envelope_crafter"
+  }
+}

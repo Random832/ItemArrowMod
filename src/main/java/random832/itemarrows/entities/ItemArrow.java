@@ -127,5 +127,11 @@ public class ItemArrow extends PreciseBluntArrow implements ItemSupplier {
             }
         }
     }
-// TODO packets, saving
+
+    @Override
+    public void shoot(double pX, double pY, double pZ, float pVelocity, float pInaccuracy) {
+        super.shoot(pX, pY, pZ, pVelocity, 0);
+    }
+
+    // TODO packets, saving
 }

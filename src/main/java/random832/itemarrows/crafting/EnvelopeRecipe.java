@@ -50,7 +50,7 @@ public class EnvelopeRecipe extends CustomRecipe {
                 finalCount++;
             }
         }
-        if(indexFirstItem >= 0 && indexFirstItem < indexEnvelope && container.getItem(indexFirstItem).is(Items.ARROW)) return false; // disambiguate with arrow recipe
+        if(indexFirstItem >= 0 && indexFirstItem < indexEnvelope && container.getItem(indexFirstItem).is(ItemArrowsMod.PRECISE_ARROW_ITEM.get())) return false; // disambiguate with arrow recipe
         return stackItem != null && finalCount <= stackItem.getMaxStackSize();
     }
 

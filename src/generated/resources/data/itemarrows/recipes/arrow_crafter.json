@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "itemarrows:calibration_arrow"
+    },
+    "C": {
+      "item": "minecraft:crafting_table"
+    },
+    "P": {
+      "item": "minecraft:sticky_piston"
+    },
+    "R": {
+      "tag": "forge:dusts/redstone"
+    }
+  },
+  "pattern": [
+    " P ",
+    "RAR",
+    " C "
+  ],
+  "result": {
+    "count": 8,
+    "item": "itemarrows:arrow_crafter"
+  }
+}

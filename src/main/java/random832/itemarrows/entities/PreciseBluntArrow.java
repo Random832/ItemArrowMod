@@ -34,7 +34,7 @@ public class PreciseBluntArrow extends AbstractArrow {
 
     @Override
     public ItemStack getPickupItem() {
-        return ItemArrowsMod.CALIBRATION_ARROW_ITEM.get().getDefaultInstance();
+        return ItemArrowsMod.PRECISE_ARROW_ITEM.get().getDefaultInstance();
     }
 
     @Override

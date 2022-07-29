@@ -34,7 +34,6 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import random832.itemarrows.ItemArrowsMod;
-import random832.itemarrows.gui.AdvancedDispenserMenu;
 
 public class AdvancedDispenserBlockEntity extends BlockEntity implements MenuProvider {
 
@@ -48,7 +47,7 @@ public class AdvancedDispenserBlockEntity extends BlockEntity implements MenuPro
     public static final int DATA_FLAGS = 4;
     public static final int NUM_DATA_VALUES = 5;
 
-    final ContainerData dataAccess = new ContainerData() {
+    public final ContainerData dataAccess = new ContainerData() {
         @Override
         public int get(int pIndex) {
             return switch (pIndex) {
@@ -194,7 +193,7 @@ public class AdvancedDispenserBlockEntity extends BlockEntity implements MenuPro
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
-        return new AdvancedDispenserMenu(pContainerId, pPlayerInventory, lazyOptItemHandler.orElseThrow(RuntimeException::new), this.dataAccess);
+        return new AdvancedDispenserMenu(pContainerId, pPlayerInventory, this);
     }
 
     BlockState getLegacyBlockState() {
@@ -217,7 +216,7 @@ public class AdvancedDispenserBlockEntity extends BlockEntity implements MenuPro
         Vec3 origin = Vec3.atCenterOf(worldPosition);
         Vec3 distance = target.subtract(origin);
         // xAngle = -(float) Mth.atan2(distance.y, distance.horizontalDistance()) * Mth.RAD_TO_DEG; // TODO try to adjust pitch for distance
-        xAngle = (float) aimX(distance.horizontalDistance(), distance.y, 1.1, 0.05, true);
+        xAngle = (float) aimX(distance.horizontalDistance(), distance.y, 1.1, 0.05, false);
         yAngle = (float) Mth.atan2(-distance.x, distance.z) * Mth.RAD_TO_DEG;
         updateClientAngles();
         powerSetting = 1;
@@ -239,5 +238,11 @@ public class AdvancedDispenserBlockEntity extends BlockEntity implements MenuPro
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
             return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.orEmpty(cap, lazyOptItemHandler);
         return super.getCapability(cap);
+    }
+
+    @Override
+    public void invalidateCaps() {
+        super.invalidateCaps();
+        lazyOptItemHandler.invalidate();
     }
 }

@@ -3,7 +3,6 @@ package random832.itemarrows.crafting;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
@@ -22,7 +21,7 @@ public class ArrowRecipe extends CustomRecipe {
         ItemStack stackEnvelope = null;
         for(int i=0; i<container.getContainerSize(); i++) {
             ItemStack stack = container.getItem(i);
-            if(stack.is(Items.ARROW)) {
+            if(stack.is(ItemArrowsMod.PRECISE_ARROW_ITEM.get())) {
                 if(indexArrow != -1) return false;
                 indexArrow = i;
             } else if(stack.is(ItemArrowsMod.ENVELOPE_ITEM.get())) {
