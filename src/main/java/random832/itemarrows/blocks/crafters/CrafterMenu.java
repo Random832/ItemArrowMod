@@ -74,6 +74,6 @@ public class CrafterMenu extends AbstractContainerMenu {
     }
 
     public static CrafterMenu createEnvelopeMenu(int i, Inventory inventory, FriendlyByteBuf friendlyByteBuf) {
-        return new CrafterMenu(ItemArrowsMod.ARROW_CRAFTER_MENU.get(), i, inventory, new ItemStackHandler(3));
+        return new CrafterMenu(ItemArrowsMod.ENVELOPE_CRAFTER_MENU.get(), i, inventory, new ItemStackHandler(3));
     }
 }
