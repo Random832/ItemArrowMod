@@ -1,4 +1,4 @@
-package random832.itemarrows.gui;
+package random832.itemarrows.blocks.crafters;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.network.FriendlyByteBuf;
@@ -18,11 +18,9 @@ import org.jetbrains.annotations.Nullable;
 import random832.itemarrows.ItemArrowsMod;
 import random832.itemarrows.items.ItemHelper;
 
-import java.util.function.Predicate;
-
 public class CrafterMenu extends AbstractContainerMenu {
-    public static final ResourceLocation EMPTY_ARROW_SLOT = new ResourceLocation(ItemArrowsMod.MODID, "empty_arrow_slot");
-    public static final ResourceLocation EMPTY_ENVELOPE_SLOT = new ResourceLocation(ItemArrowsMod.MODID, "empty_envelope_slot");
+    public static final ResourceLocation EMPTY_ARROW_SLOT = new ResourceLocation(ItemArrowsMod.MODID, "item/empty_arrow_slot");
+    public static final ResourceLocation EMPTY_ENVELOPE_SLOT = new ResourceLocation(ItemArrowsMod.MODID, "item/empty_envelope_slot");
 
     public CrafterMenu(@Nullable MenuType<?> pMenuType, int pContainerId, Inventory pPlayerInventory, IItemHandler blockInv) {
         super(pMenuType, pContainerId);

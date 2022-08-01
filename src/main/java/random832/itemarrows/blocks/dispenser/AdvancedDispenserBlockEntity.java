@@ -1,4 +1,4 @@
-package random832.itemarrows.dispenser;
+package random832.itemarrows.blocks.dispenser;
 
 import com.mojang.math.Constants;
 import net.minecraft.core.BlockPos;
@@ -93,11 +93,15 @@ public class AdvancedDispenserBlockEntity extends BlockEntity implements MenuPro
         }
     };
 
+    boolean loadLock;
     private void tryLoadGunpowder() {
+        if(loadLock) return; // otherwise extractItem recursively calls this function and ruins everything
         if (gunpowder > MAX_GUNPOWDER - GUNPOWDER_PER_ITEM) return;
+        loadLock = true;
         ItemStack stack = gunpowderInventory.extractItem(GUNPOWDER_SLOT, (MAX_GUNPOWDER - gunpowder) / GUNPOWDER_PER_ITEM, false);
         if (!stack.isEmpty())
             gunpowder += stack.getCount() * GUNPOWDER_PER_ITEM;
+        loadLock = false;
     }
 
     LazyOptional<IItemHandler> lazyOptItemHandler;
@@ -187,7 +191,7 @@ public class AdvancedDispenserBlockEntity extends BlockEntity implements MenuPro
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("container." + ItemArrowsMod.MODID + ".advanced_dispenser");
+        return ItemArrowsMod.DISPENSER_BLOCK.get().getName();
     }
 
     @Nullable
@@ -244,5 +248,18 @@ public class AdvancedDispenserBlockEntity extends BlockEntity implements MenuPro
     public void invalidateCaps() {
         super.invalidateCaps();
         lazyOptItemHandler.invalidate();
+    }
+
+    public float consumeGunpowder() {
+        tryLoadGunpowder();
+        int gunpowderToUse = (int)(Math.max(0, powerSetting - 1) * 100);
+        if(gunpowder > gunpowderToUse) {
+            gunpowder -= gunpowderToUse;
+            return powerSetting;
+        } else {
+            gunpowderToUse = gunpowder;
+            gunpowder = 0;
+            return 1 + gunpowder / 100f;
+        }
     }
 }

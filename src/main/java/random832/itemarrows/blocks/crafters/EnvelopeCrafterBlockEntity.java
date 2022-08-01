@@ -1,6 +1,7 @@
-package random832.itemarrows.blocks;
+package random832.itemarrows.blocks.crafters;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -12,31 +13,20 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import random832.itemarrows.ItemArrowsMod;
-import random832.itemarrows.gui.CrafterMenu;
 import random832.itemarrows.items.ItemHelper;
 
 public class EnvelopeCrafterBlockEntity extends BlockEntity implements MenuProvider {
-    ItemStackHandler inventory = new ItemStackHandler(3) {
+    CrafterItemHandler inventory = new CrafterItemHandler() {
         @Override
-        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-            if(slot == 1)
-                return stack.is(ItemArrowsMod.ENVELOPE_ITEM.get()) && ItemHelper.getContainedItem(stack).isEmpty();
-            else return true;
+        protected void onInputSlotChanged() {
+            cooldown = 20;
         }
 
         @Override
-        public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-            if(slot == 0 && !simulate) cooldown = 20;
-            return super.insertItem(slot, stack, simulate);
-        }
-
-        @Override
-        public void setStackInSlot(int slot, @NotNull ItemStack stack) {
-            super.setStackInSlot(slot, stack);
-            if(slot == 0) cooldown = 20;
+        protected boolean isItemContainer(ItemStack stack) {
+            return stack.is(ItemArrowsMod.ENVELOPE_ITEM.get()) && ItemHelper.getContainedItem(stack).isEmpty();
         }
 
         @Override
@@ -45,43 +35,7 @@ public class EnvelopeCrafterBlockEntity extends BlockEntity implements MenuProvi
         }
     };
     LazyOptional<IItemHandler> rawCap = LazyOptional.of(() -> inventory);
-    LazyOptional<IItemHandler> automationWrapper = LazyOptional.of(() -> new IItemHandler() {
-        @Override
-        public int getSlots() {
-            return inventory.getSlots();
-        }
-
-        @Override
-        public @NotNull ItemStack getStackInSlot(int slot) {
-            return inventory.getStackInSlot(slot);
-        }
-
-        @Override
-        public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-            if(slot != 2)
-                return inventory.insertItem(slot, stack, simulate);
-            else
-                return stack;
-        }
-
-        @Override
-        public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
-            if(slot == 2)
-                return inventory.extractItem(slot, amount, simulate);
-            else
-                return ItemStack.EMPTY;
-        }
-
-        @Override
-        public int getSlotLimit(int slot) {
-            return inventory.getSlotLimit(slot);
-        }
-
-        @Override
-        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-            return inventory.isItemValid(slot, stack);
-        }
-    });
+    LazyOptional<IItemHandler> automationWrapper = LazyOptional.of(inventory::automationWrapper);
 
     public EnvelopeCrafterBlockEntity(BlockPos pPos, BlockState pState) {
         super(ItemArrowsMod.ENVELOPE_STUFFER_BE.get(), pPos, pState);
@@ -137,7 +91,7 @@ public class EnvelopeCrafterBlockEntity extends BlockEntity implements MenuProvi
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("container." + ItemArrowsMod.MODID + ".envelope_crafter");
+        return ItemArrowsMod.ENVELOPE_CRAFTER_BLOCK.get().getName();
     }
 
     @Nullable
@@ -146,4 +100,17 @@ public class EnvelopeCrafterBlockEntity extends BlockEntity implements MenuProvi
         return new CrafterMenu(ItemArrowsMod.ENVELOPE_CRAFTER_MENU.get(), pContainerId, pPlayerInventory, inventory);
     }
 
+    @Override
+    protected void saveAdditional(CompoundTag pTag) {
+        super.saveAdditional(pTag);
+        pTag.put("inventory", inventory.serializeNBT());
+        pTag.putInt("cooldown", cooldown);
+    }
+
+    @Override
+    public void load(CompoundTag pTag) {
+        super.load(pTag);
+        inventory.deserializeNBT(pTag.getCompound("inventory"));
+        cooldown = pTag.getInt("cooldown");
+    }
 }

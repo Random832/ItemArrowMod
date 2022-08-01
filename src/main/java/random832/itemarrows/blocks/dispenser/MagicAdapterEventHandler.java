@@ -1,4 +1,4 @@
-package random832.itemarrows.dispenser;
+package random832.itemarrows.blocks.dispenser;
 
 import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;

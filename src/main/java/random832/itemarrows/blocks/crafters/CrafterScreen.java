@@ -1,4 +1,4 @@
-package random832.itemarrows.gui;
+package random832.itemarrows.blocks.crafters;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;

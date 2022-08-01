@@ -1,6 +1,6 @@
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-package random832.itemarrows.gui;
+package random832.itemarrows.blocks.dispenser;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 

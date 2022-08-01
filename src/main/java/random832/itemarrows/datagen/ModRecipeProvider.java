@@ -69,7 +69,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('F', Tags.Items.FEATHERS)
                 .unlockedBy("has_feather", has(Tags.Items.FEATHERS))
                 .save(consumer);
-        ShapedRecipeBuilder.shaped(ItemArrowsMod.ARROW_CRAFTER_BLOCK.get(), 8)
+        ShapedRecipeBuilder.shaped(ItemArrowsMod.ARROW_CRAFTER_BLOCK.get())
                 .pattern(" P ")
                 .pattern("RAR")
                 .pattern(" C ")
@@ -79,7 +79,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('C', Items.CRAFTING_TABLE)
                 .unlockedBy("has_arrow", has(ItemArrowsMod.PRECISE_ARROW_ITEM.get()))
                 .save(consumer);
-        ShapedRecipeBuilder.shaped(ItemArrowsMod.ENVELOPE_CRAFTER_BLOCK.get(), 8)
+        ShapedRecipeBuilder.shaped(ItemArrowsMod.ENVELOPE_CRAFTER_BLOCK.get())
                 .pattern(" P ")
                 .pattern("RER")
                 .pattern(" C ")

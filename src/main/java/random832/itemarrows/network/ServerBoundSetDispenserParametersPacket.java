@@ -4,7 +4,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
 import org.jetbrains.annotations.Nullable;
-import random832.itemarrows.dispenser.AdvancedDispenserMenu;
+import random832.itemarrows.blocks.dispenser.AdvancedDispenserMenu;
 
 import java.util.function.Supplier;
 

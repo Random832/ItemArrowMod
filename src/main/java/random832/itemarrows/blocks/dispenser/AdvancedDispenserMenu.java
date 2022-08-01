@@ -1,4 +1,4 @@
-package random832.itemarrows.dispenser;
+package random832.itemarrows.blocks.dispenser;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
@@ -18,7 +18,6 @@ import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import random832.itemarrows.ItemArrowsMod;
-import random832.itemarrows.dispenser.AdvancedDispenserBlockEntity;
 
 public class AdvancedDispenserMenu extends AbstractContainerMenu {
     public static final ResourceLocation EMPTY_GUNPOWDER_SLOT = new ResourceLocation( ItemArrowsMod.MODID, "item/empty_gunpowder_slot");

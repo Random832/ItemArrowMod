@@ -39,5 +39,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         standard(ItemArrowsMod.ENVELOPE_ITEM.get());
         standard(ItemArrowsMod.ITEM_ARROW_ITEM.get());
         standard(ItemArrowsMod.REMOTE.get());
+        standard(ItemArrowsMod.PRECISE_ARROW_ITEM.get());
     }
 }

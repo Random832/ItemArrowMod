@@ -19,13 +19,13 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import random832.itemarrows.dispenser.AdvancedDispenserRenderer;
+import random832.itemarrows.blocks.dispenser.AdvancedDispenserRenderer;
 import random832.itemarrows.entities.PreciseBluntArrow;
 import random832.itemarrows.entities.ItemArrow;
-import random832.itemarrows.dispenser.AdvancedDispenserMenu;
-import random832.itemarrows.dispenser.AdvancedDispenserScreen;
-import random832.itemarrows.gui.CrafterMenu;
-import random832.itemarrows.gui.CrafterScreen;
+import random832.itemarrows.blocks.dispenser.AdvancedDispenserMenu;
+import random832.itemarrows.blocks.dispenser.AdvancedDispenserScreen;
+import random832.itemarrows.blocks.crafters.CrafterMenu;
+import random832.itemarrows.blocks.crafters.CrafterScreen;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD, modid = ItemArrowsMod.MODID)
 public class ClientSetup {

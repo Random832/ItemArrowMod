@@ -18,8 +18,8 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import random832.itemarrows.ItemArrowsMod;
-import random832.itemarrows.dispenser.AdvancedDispenserBlock;
-import random832.itemarrows.dispenser.AdvancedDispenserBlockEntity;
+import random832.itemarrows.blocks.dispenser.AdvancedDispenserBlock;
+import random832.itemarrows.blocks.dispenser.AdvancedDispenserBlockEntity;
 
 import javax.annotation.Nullable;
 import java.util.Optional;

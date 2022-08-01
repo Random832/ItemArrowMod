@@ -1,4 +1,4 @@
-package random832.itemarrows.dispenser;
+package random832.itemarrows.blocks.dispenser;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

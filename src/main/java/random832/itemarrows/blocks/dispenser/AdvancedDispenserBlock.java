@@ -1,4 +1,4 @@
-package random832.itemarrows.dispenser;
+package random832.itemarrows.blocks.dispenser;
 
 import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;
@@ -31,12 +31,9 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 import random832.itemarrows.MathHelper;
-import random832.itemarrows.blocks.ArrowCollectorBlockEntity;
 import random832.itemarrows.capability.CapabilityHelper;
 
 public class AdvancedDispenserBlock extends DispenserBlock {
@@ -134,7 +131,8 @@ public class AdvancedDispenserBlock extends DispenserBlock {
         Vec3 vec = blockSource.getRealEntity().getAimVector();
         Projectile projectile = behavior.getProjectile(level, position, stack);
         // y increment of 0.1 in vanilla dispenser ~ angle of about 5.71 degrees up
-        float power = behavior.getPower() * blockSource.getRealEntity().powerSetting;
+        float effectivePowerSetting = blockSource.getRealEntity().consumeGunpowder();
+        float power = behavior.getPower() * effectivePowerSetting;
         float uncertainty = behavior.getUncertainty() / 2;
         projectile.shoot(vec.x, vec.y, vec.z, power, uncertainty);
         level.addFreshEntity(projectile);
@@ -142,6 +140,9 @@ public class AdvancedDispenserBlock extends DispenserBlock {
         //TODO animation has to be reworked anyway, also do explosion stuff for supercharged
         level.levelEvent(LevelEvent.SOUND_DISPENSER_PROJECTILE_LAUNCH, blockSource.getPos(), 0);
         level.levelEvent(LevelEvent.PARTICLES_SHOOT, blockSource.getPos(), blockSource.getBlockState().getValue(FACING).get3DDataValue());
+        if(effectivePowerSetting > 1) {
+            // TODO explosive sound
+        }
         return stack;
     }
 

@@ -1,4 +1,4 @@
-package random832.itemarrows.dispenser;
+package random832.itemarrows.blocks.dispenser;
 
 import net.minecraft.Util;
 import net.minecraft.core.BlockSource;

@@ -1,4 +1,4 @@
-package random832.itemarrows.dispenser;
+package random832.itemarrows.blocks.dispenser;
 
 import net.minecraft.core.Position;
 import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
@@ -6,14 +6,12 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import random832.itemarrows.entities.ItemArrow;
-import random832.itemarrows.items.ItemHelper;
+import random832.itemarrows.entities.PreciseBluntArrow;
 
-public class ItemArrowDispenseBehavior extends AbstractProjectileDispenseBehavior {
+public class CalibrationArrowDispenseBehavior  extends AbstractProjectileDispenseBehavior {
     @Override
     public Projectile getProjectile(Level level, Position pos, ItemStack stack) {
-        ItemArrow arrow = new ItemArrow(level, pos.x(), pos.y(), pos.z());
-        arrow.containedItem = ItemHelper.getContainedItem(stack);
+        PreciseBluntArrow arrow = new PreciseBluntArrow(level, pos.x(), pos.y(), pos.z());
         arrow.pickup = AbstractArrow.Pickup.ALLOWED;
         return arrow;
     }
