@@ -56,7 +56,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("RP")
                 .pattern("SB")
                 .define('B', ItemTags.BUTTONS)
-                .define('S', Items.SMOOTH_STONE)
+                .define('S', Items.SMOOTH_STONE_SLAB)
                 .define('R', Tags.Items.DUSTS_REDSTONE)
                 .define('P', Tags.Items.ENDER_PEARLS)
                 .unlockedBy("has_ender_pearl", has(Tags.Items.ENDER_PEARLS))
