@@ -112,6 +112,7 @@ public class ItemArrowsMod
     {
         DispenserBlock.registerBehavior(ITEM_ARROW_ITEM.get(), new ItemArrowDispenseBehavior());
         DispenserBlock.registerBehavior(PRECISE_ARROW_ITEM.get(), new CalibrationArrowDispenseBehavior());
+        EntityItemBehaviors.bootstrap();
     }
 
     void gatherData(GatherDataEvent event) {

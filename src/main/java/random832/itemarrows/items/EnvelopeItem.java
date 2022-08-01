@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
-import random832.itemarrows.EntityHelper;
+import random832.itemarrows.EntityItemBehaviors;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class EnvelopeItem extends Item {
 
     private ItemStack giveCore(ItemStack stack, Player player, LivingEntity entity, InteractionHand hand) {
         ItemStack containedItem = ItemHelper.getContainedItem(stack);
-        ItemStack remainder = EntityHelper.giveItems(containedItem, player, entity);
+        ItemStack remainder = EntityItemBehaviors.giveItems(containedItem, entity, player);
         ItemHelper.setContainedItem(stack, remainder);
         return stack;
     }

@@ -19,7 +19,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import random832.itemarrows.capability.CapabilityHelper;
-import random832.itemarrows.EntityHelper;
+import random832.itemarrows.EntityItemBehaviors;
 import random832.itemarrows.ItemArrowsMod;
 import random832.itemarrows.items.ItemHelper;
 
@@ -71,7 +71,7 @@ public class ItemArrow extends PreciseBluntArrow implements ItemSupplier {
                 });
             }
             if (hitEntity != null) {
-                containedItem = EntityHelper.giveItems(containedItem, getOwningPlayer(), hitEntity);
+                containedItem = EntityItemBehaviors.giveItems(containedItem, hitEntity, getOwningPlayer());
             }
         }
     }
