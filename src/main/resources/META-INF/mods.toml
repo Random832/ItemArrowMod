@@ -4,7 +4,7 @@ license="MIT"
 [[mods]]
 modId="itemarrows"
 version="${file.jarVersion}"
-displayName="Example Mod"
+displayName="Item Arrows"
 logoFile="itemarrows.png" #optional
 description='''
 Allows you to transport items by attaching them to arrows
