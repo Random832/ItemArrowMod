@@ -17,14 +17,17 @@ import net.minecraft.world.level.block.DispenserBlock;
  * The advanced dispenser needs to access these methods directly on pojectile dispense behaviors, and this is the only way to do it
  */
 public class PotionDispenseItemBehavior extends AbstractProjectileDispenseBehavior {
+    @Override
     public Projectile getProjectile(Level level, Position pos, ItemStack stack) {
         return Util.make(new ThrownPotion(level, pos.x(), pos.y(), pos.z()), e -> e.setItem(stack));
     }
 
+    @Override
     public float getUncertainty() {
         return super.getUncertainty() * 0.5F;
     }
 
+    @Override
     public float getPower() {
         return super.getPower() * 1.25F;
     }
