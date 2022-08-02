@@ -23,7 +23,7 @@ public class EnglishLanguageProvider extends net.minecraftforge.common.data.Lang
         add(ItemArrowsMod.COLLECTOR_BLOCK.get(), "Arrow Collector");
         add(ItemArrowsMod.DISPENSER_BLOCK.get(), "Advanced Dispenser");
         add(ItemArrowsMod.REMOTE.get(), "Advanced Dispenser Remote");
-        add(info("itemGroup."+ItemArrowsMod.MODID), "Item Arrows");
+        add("itemGroup.item_arrows", "Item Arrows");
         add(info("contains"), "Contains %s %s");
         add(info("contains.stacked"), "Contains %s %s (%s total)");
         add(info("empty"), "Empty");

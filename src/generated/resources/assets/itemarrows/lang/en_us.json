@@ -13,7 +13,6 @@
   "info.itemarrows.contains.stacked": "Contains %s %s (%s total)",
   "info.itemarrows.empty": "Empty",
   "info.itemarrows.empty.envelope": "Empty. Fill in crafting grid",
-  "info.itemarrows.itemGroup.itemarrows": "Item Arrows",
   "info.itemarrows.remote.no_coords": "No dispenser coordinates configured",
   "info.itemarrows.remote.no_dispenser": "No dispenser found at coordinates %s",
   "info.itemarrows.remote.set_dispenser": "Configured remote to control dispenser at %s",
@@ -24,5 +23,6 @@
   "item.itemarrows.calibration_arrow": "Blank Precision Arrow",
   "item.itemarrows.dispenser_remote": "Advanced Dispenser Remote",
   "item.itemarrows.envelope": "Item Envelope",
-  "item.itemarrows.item_arrow": "Item Arrow"
+  "item.itemarrows.item_arrow": "Item Arrow",
+  "itemGroup.item_arrows": "Item Arrows"
 }
