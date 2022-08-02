@@ -55,6 +55,7 @@ public class AdvancedDispenserScreen extends AbstractContainerScreen<AdvancedDis
 
     @Override
     public void render(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
+        renderBackground(pPoseStack);
         super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
         if(gunpowderWidget.isShowingTooltip()) {
             gunpowderWidget.renderToolTip(pPoseStack, pMouseX, pMouseY);
