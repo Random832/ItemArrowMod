@@ -31,13 +31,13 @@ import random832.itemarrows.blocks.crafters.CrafterScreen;
 public class ClientSetup {
     @SubscribeEvent
     static void registerRenderers(EntityRenderersEvent.RegisterRenderers e) {
-        e.registerEntityRenderer(ItemArrowsMod.ITEM_ARROW_ENTITY.get(), c -> new ArrowRenderer<>(c) {
+        e.registerEntityRenderer(ItemArrowsMod.ITEM_ARROW_ENTITY.get(), c -> new ArrowRenderer<ItemArrow>(c) {
             @Override
             public ResourceLocation getTextureLocation(ItemArrow arrow) {
                 return TippableArrowRenderer.NORMAL_ARROW_LOCATION;
             }
         });
-        e.registerEntityRenderer(ItemArrowsMod.PRECISE_BLUNT_ARROW.get(), c -> new ArrowRenderer<>(c) {
+        e.registerEntityRenderer(ItemArrowsMod.PRECISE_BLUNT_ARROW.get(), c -> new ArrowRenderer<PreciseBluntArrow>(c) {
             @Override
             public ResourceLocation getTextureLocation(PreciseBluntArrow arrow) {
                 return TippableArrowRenderer.NORMAL_ARROW_LOCATION;
