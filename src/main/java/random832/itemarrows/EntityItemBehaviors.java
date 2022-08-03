@@ -55,8 +55,8 @@ public class EntityItemBehaviors {
 
         // Basic priority for simply putting an item in an inventory.
         register((e, i) -> e instanceof Player, EntityItemBehaviors::givePlayer, 0);
+        register((e, i) -> e instanceof AbstractChestedHorse h && h.hasChest(), EntityItemBehaviors::putHorseChest, 0);
         register((e, i) -> e instanceof ContainerEntity, EntityItemBehaviors::putContainer, 0);
-        register((e, i) -> e instanceof AbstractChestedHorse, EntityItemBehaviors::putHorseChest, 0);
     }
 
     private static ItemStack givePlayer(ItemStack stack, Entity entity, @Nullable Player player) {
@@ -72,6 +72,7 @@ public class EntityItemBehaviors {
     private static ItemStack putHorseChest(ItemStack stack, Entity entity, @Nullable Player player) {
         final ItemStack fstack = stack;
         return entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).map(h -> {
+            if(h.getSlots() <= 2) return ItemStack.EMPTY;
             IItemHandler chest = new RangedWrapper((IItemHandlerModifiable) h, 2, h.getSlots());
             return ItemHandlerHelper.insertItem(chest, fstack, false);
         }).orElse(stack);
